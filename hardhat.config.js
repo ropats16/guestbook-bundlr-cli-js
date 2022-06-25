@@ -4,13 +4,13 @@ require('dotenv').config({ path: './.env' });
 require('hardhat-deploy');
 require('@nomiclabs/hardhat-ethers');
 
-const defaultNetwork = 'localhost';
+const defaultNetwork = 'rinkeby';
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: '0.8.10',
+  solidity: '0.8.7',
   defaultNetwork,
 
   networks: {
@@ -34,6 +34,16 @@ module.exports = {
     rinkeby: {
       chainId: 4,
       url: `https://eth-rinkeby.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
+      accounts: [`${process.env.PRIVATE_KEY}`],
+    },
+
+    /////////
+    // L2 NETWORKS
+    /////////
+
+    polygon: {
+      chainId: 137,
+      url: `https://polygon-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
       accounts: [`${process.env.PRIVATE_KEY}`],
     },
   },
